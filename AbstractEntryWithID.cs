@@ -1,4 +1,4 @@
-﻿namespace Plugins.Framework.Content
+﻿namespace Plugins.UnityMonstackContentLoader
 {
     public abstract class AbstractEntryWithId<T>
     {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Plugins.Framework.Content;
 
-namespace Plugins.UnityContentLoader
+namespace Plugins.UnityMonstackContentLoader
 {
     public interface IContentListRepository<TKey, TEntity> : IContentRepository
     {

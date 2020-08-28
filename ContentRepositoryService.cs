@@ -8,7 +8,7 @@ using UnityEngine;
 
 #endregion
 
-namespace Plugins.UnityContentLoader
+namespace Plugins.UnityMonstackContentLoader
 {
     [Inject]
     public class ContentRepositoryService

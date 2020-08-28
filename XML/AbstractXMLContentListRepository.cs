@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 #endregion
 
-namespace Plugins.Framework.Content.XML
+namespace Plugins.UnityMonstackContentLoader.XML
 {
     public abstract class AbstractXMLContentListRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>
         where TEntity : class
