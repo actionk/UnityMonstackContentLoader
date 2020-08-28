@@ -6,7 +6,7 @@ Loads content from Resources in either JSON or XML format
 
 * [Install](#install)
   * [Dependencies](#dependencies)
-* [Repositories](#repositories)
+* [Getting started](#getting-started)
 
 # Install
 
