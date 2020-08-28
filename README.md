@@ -128,5 +128,5 @@ public class ContentObjectRepository : AbstractJSONContentListRepository<int, Co
 ### Getting entities from repository
 
 ```cs
-DependencyProvider.Resolve<ContentObjectRepository>().GetByKey(objectId);
+var contentObject = DependencyProvider.Resolve<ContentObjectRepository>().GetByKey(objectId);
 ```
