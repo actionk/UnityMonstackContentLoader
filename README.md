@@ -7,6 +7,10 @@ Loads content from Resources in either JSON or XML format
 * [Install](#install)
   * [Dependencies](#dependencies)
 * [Getting started](#getting-started)
+* * [Creating a JSON file](#creating-a-json-file)
+* * [Creating a mapping object](#creating-a-mapping-object)
+* * [Creating a repository](#creating-a-repository)
+* * [Getting entities from repository](#getting-entities-from-repository)
 
 # Install
 
@@ -129,4 +133,8 @@ public class ContentObjectRepository : AbstractJSONContentListRepository<int, Co
 
 ```cs
 var contentObject = DependencyProvider.Resolve<ContentObjectRepository>().GetByKey(objectId);
+```
+
+```cs
+var contentObjects = DependencyProvider.Resolve<ContentObjectRepository>().GetAll();
 ```
