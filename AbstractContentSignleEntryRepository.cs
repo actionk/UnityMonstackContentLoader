@@ -1,4 +1,6 @@
-﻿namespace Plugins.UnityMonstackContentLoader
+﻿using Plugins.UnityMonstackCore.Utils;
+
+namespace Plugins.UnityMonstackContentLoader
 {
     public abstract class AbstractContentSignleEntryRepository<T> : IContentRepository
     {
