@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Plugins.UnityMonstackCore.Loggers;
 using Plugins.UnityMonstackCore.Utils;
 
@@ -10,6 +11,8 @@ namespace Plugins.UnityMonstackContentLoader.JSON
         AbstractJSONContentListRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>
         where TEntity : class
     {
+        protected JsonConverter[] CustomConverters { get; set; }
+
         protected AbstractJSONContentListRepository(string filePath) : base(filePath)
         {
         }
@@ -22,7 +25,7 @@ namespace Plugins.UnityMonstackContentLoader.JSON
                 var reader = new StreamReader(new MemoryStream(dataAsByteArray));
                 var dataAsJson = reader.ReadToEnd();
 
-                var deserializedList = JsonConvert.DeserializeObject<JSONDeserializedList<TEntity>>(dataAsJson);
+                var deserializedList = JsonConvert.DeserializeObject<JSONDeserializedList<TEntity>>(dataAsJson, CustomConverters);
                 deserializedList.entries.ForEach(entity =>
                 {
                     entries[GetEntityID(entity)] = entity;
