@@ -1,4 +1,4 @@
-﻿namespace Plugins.UnityMonstackContentLoader
+﻿namespace Plugins.Shared.UnityMonstackContentLoader
 {
     public interface IContentRepository
     {

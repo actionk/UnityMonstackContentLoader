@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Plugins.UnityMonstackCore.Utils;
+using Plugins.Shared.UnityMonstackCore.Utils;
 
-namespace Plugins.UnityMonstackContentLoader
+namespace Plugins.Shared.UnityMonstackContentLoader
 {
     public interface IContentListRepository<TKey, TEntity> : IContentRepository
     {
