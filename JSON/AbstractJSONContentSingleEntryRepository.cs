@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
-using Plugins.Shared.UnityMonstackCore.Loggers;
-using Plugins.Shared.UnityMonstackCore.Utils;
+using Plugins.UnityMonstackCore.Loggers;
+using Plugins.UnityMonstackCore.Utils;
 
-namespace Plugins.Shared.UnityMonstackContentLoader.JSON
+namespace Plugins.UnityMonstackContentLoader.JSON
 {
     public abstract class AbstractJSONContentSingleEntryRepository<T> : AbstractContentSignleEntryRepository<T>
     {

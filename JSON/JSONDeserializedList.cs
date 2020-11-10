@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Plugins.Shared.UnityMonstackContentLoader.JSON
+namespace Plugins.UnityMonstackContentLoader.JSON
 {
     public class JSONDeserializedList<T>
     {

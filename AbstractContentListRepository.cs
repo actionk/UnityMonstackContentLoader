@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Plugins.Shared.UnityMonstackCore.Loggers;
-using Plugins.Shared.UnityMonstackCore.Utils;
+using Plugins.UnityMonstackCore.Loggers;
+using Plugins.UnityMonstackCore.Utils;
 
-namespace Plugins.Shared.UnityMonstackContentLoader
+namespace Plugins.UnityMonstackContentLoader
 {
     public abstract class AbstractContentListRepository<TKey, TEntity> : IContentListRepository<TKey, TEntity>,
         IEnumerable<TEntity> where TEntity : class

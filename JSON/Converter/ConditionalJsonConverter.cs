@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter
+namespace Plugins.UnityMonstackContentLoader.JSON.Converter
 {
     public class ConditionalJsonConverter : JsonConverter
     {

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 
-namespace Plugins.Shared.UnityMonstackContentLoader.XML
+namespace Plugins.UnityMonstackContentLoader.XML
 {
     public class AbstractXMLContentSingleEntryRepository<T> : AbstractContentSignleEntryRepository<T>
     {

@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 #endregion
 
-namespace Plugins.Shared.UnityMonstackContentLoader.XML
+namespace Plugins.UnityMonstackContentLoader.XML
 {
     [XmlRoot(ElementName = "content")]
     public class XMLDeserializedList<T>

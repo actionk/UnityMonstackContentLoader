@@ -2,13 +2,13 @@
 
 using System;
 using System.Collections.Generic;
-using Plugins.Shared.UnityMonstackCore.DependencyInjections;
-using Plugins.Shared.UnityMonstackCore.Extensions.Collections;
+using Plugins.UnityMonstackCore.DependencyInjections;
+using Plugins.UnityMonstackCore.Extensions.Collections;
 using UnityEngine;
 
 #endregion
 
-namespace Plugins.Shared.UnityMonstackContentLoader
+namespace Plugins.UnityMonstackContentLoader
 {
     [Inject]
     public class ContentRepositoryService

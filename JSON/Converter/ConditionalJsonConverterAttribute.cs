@@ -1,6 +1,6 @@
 using System;
 
-namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter
+namespace Plugins.UnityMonstackContentLoader.JSON.Converter
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class ConditionalJsonConverterAttribute : Attribute
