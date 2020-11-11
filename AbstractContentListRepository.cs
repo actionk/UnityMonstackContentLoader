@@ -9,6 +9,7 @@ namespace Plugins.UnityMonstackContentLoader
     public abstract class AbstractContentListRepository<TKey, TEntity> : IContentListRepository<TKey, TEntity>,
         IEnumerable<TEntity> where TEntity : class
     {
+        protected bool hasPendingChanges;
         protected readonly Dictionary<TKey, TEntity> entries = new Dictionary<TKey, TEntity>();
 
         protected AbstractContentListRepository(string filePath)
@@ -42,6 +43,24 @@ namespace Plugins.UnityMonstackContentLoader
             }
 
             return entries[key];
+        }
+
+        public virtual T GetByKey<T>(TKey key) where T : TEntity
+        {
+            return (T) GetByKey(key);
+        }
+
+        public virtual bool TryGetByKey(TKey key, out TEntity resultEntity)
+        {
+            return entries.TryGetValue(key, out resultEntity);
+        }
+
+        public abstract void Save();
+
+        public virtual void Replace(TEntity newEntity)
+        {
+            entries[GetEntityID(newEntity)] = newEntity;
+            hasPendingChanges = true;
         }
 
         public virtual List<TEntity> GetAll()
