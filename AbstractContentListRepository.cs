@@ -63,6 +63,14 @@ namespace Plugins.UnityMonstackContentLoader
             hasPendingChanges = true;
         }
 
+        public virtual bool DeleteByKey(TKey key)
+        {
+            var isRemoved = entries.Remove(key);
+            if (isRemoved)
+                hasPendingChanges = true;
+            return isRemoved;
+        }
+
         public virtual List<TEntity> GetAll()
         {
             return entries.Values.ToList();
