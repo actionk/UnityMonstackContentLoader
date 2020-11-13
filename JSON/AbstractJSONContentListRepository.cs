@@ -15,11 +15,22 @@ namespace Plugins.UnityMonstackContentLoader.JSON
         protected JsonConverter[] CustomConverters { get; set; }
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 
-        protected AbstractJSONContentListRepository(string filePath) : base(filePath)
+        protected AbstractJSONContentListRepository(string filePath, bool loadImmediately = false) : base(filePath)
         {
             JsonSerializerSettings = new JsonSerializerSettings();
             JsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             JsonSerializerSettings.Formatting = Formatting.Indented;
+
+            if (loadImmediately)
+                Reload();
+        }
+
+        public static TRepository CreateAndLoad<TRepository>()
+            where TRepository : AbstractContentListRepository<TKey, TEntity>
+        {
+            var repository = Activator.CreateInstance<TRepository>();
+            repository.Reload();
+            return repository;
         }
 
         public override void Save()
