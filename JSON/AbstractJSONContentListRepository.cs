@@ -12,7 +12,7 @@ namespace Plugins.UnityMonstackContentLoader.JSON
         AbstractJSONContentListRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>
         where TEntity : class
     {
-        protected JsonConverter[] CustomConverters { get; set; }
+        protected abstract JsonConverter[] CustomConverters { get; }
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 
         protected AbstractJSONContentListRepository(string filePath, bool loadImmediately = false) : base(filePath)
