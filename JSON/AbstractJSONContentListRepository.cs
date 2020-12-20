@@ -25,14 +25,6 @@ namespace Plugins.UnityMonstackContentLoader.JSON
                 Reload();
         }
 
-        public static TRepository CreateAndLoad<TRepository>()
-            where TRepository : AbstractContentListRepository<TKey, TEntity>
-        {
-            var repository = Activator.CreateInstance<TRepository>();
-            repository.Reload();
-            return repository;
-        }
-
         public override void Save()
         {
             if (!hasPendingChanges)
