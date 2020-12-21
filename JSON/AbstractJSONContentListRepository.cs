@@ -5,6 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Plugins.UnityMonstackCore.Loggers;
 using Plugins.UnityMonstackCore.Utils;
+using UnityEngine;
 
 namespace Plugins.UnityMonstackContentLoader.JSON
 {
@@ -42,10 +43,7 @@ namespace Plugins.UnityMonstackContentLoader.JSON
         {
             try
             {
-                var dataAsByteArray = LocalStorageUtils.LoadBytesFromFile(FileSource, FilePath);
-                var reader = new StreamReader(new MemoryStream(dataAsByteArray));
-                var dataAsJson = reader.ReadToEnd();
-
+                var dataAsJson = ReadJson();
                 var deserializedList = JsonConvert.DeserializeObject<JSONDeserializedList<TEntity>>(dataAsJson, CustomConverters);
                 deserializedList.entries.ForEach(entity =>
                 {
@@ -56,8 +54,25 @@ namespace Plugins.UnityMonstackContentLoader.JSON
             }
             catch (Exception e)
             {
-                UnityLogger.Error("Failed to load JSON from {} because {}", FilePath, e);
+                UnityLogger.Error($"Failed to load JSON from {FilePath} because", e);
             }
+        }
+
+        private string ReadJson()
+        {
+            switch (FileSource)
+            {
+                case FileSourceType.Resources:
+                    return Resources.Load<TextAsset>(FilePath).text;
+
+                case FileSourceType.ApplicationPersistentData:
+                    var dataAsByteArray = LocalStorageUtils.LoadBytesFromFile(FileSource, FilePath);
+                    var reader = new StreamReader(new MemoryStream(dataAsByteArray));
+                    var dataAsJson = reader.ReadToEnd();
+                    return dataAsJson;
+            }
+
+            throw new NotImplementedException();
         }
     }
 }
