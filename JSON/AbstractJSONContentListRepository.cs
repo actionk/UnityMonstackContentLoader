@@ -13,6 +13,8 @@ namespace Plugins.UnityMonstackContentLoader.JSON
         AbstractJSONContentListRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>
         where TEntity : class
     {
+        public readonly string Extension = ".json"; 
+        
         protected abstract JsonConverter[] CustomConverters { get; }
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 
@@ -36,7 +38,7 @@ namespace Plugins.UnityMonstackContentLoader.JSON
                 entries = entries.Values.ToList()
             }, JsonSerializerSettings);
 
-            LocalStorageUtils.SaveBytesToFile(FileSourceType.Resources, FilePath, new UTF8Encoding().GetBytes(dataAsJson));
+            LocalStorageUtils.SaveBytesToFile(FileSourceType.Resources, FilePath + Extension, new UTF8Encoding().GetBytes(dataAsJson));
         }
 
         public override void Reload()
