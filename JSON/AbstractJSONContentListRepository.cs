@@ -13,8 +13,8 @@ namespace Plugins.UnityMonstackContentLoader.JSON
         AbstractJSONContentListRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>
         where TEntity : class
     {
-        public readonly string Extension = ".json"; 
-        
+        public readonly string Extension = ".json";
+
         protected abstract JsonConverter[] CustomConverters { get; }
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 

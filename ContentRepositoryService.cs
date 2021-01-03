@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Plugins.UnityMonstackCore.DependencyInjections;
 using Plugins.UnityMonstackCore.Extensions.Collections;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace Plugins.UnityMonstackContentLoader
     {
         private readonly Dictionary<Type, IContentRepository> m_contentRepositories =
             new Dictionary<Type, IContentRepository>();
-
+        
         public ContentRepositoryService()
         {
             var listOfRepositories = DependencyProvider.ResolveList<IContentRepository>();
