@@ -15,7 +15,6 @@ namespace Plugins.UnityMonstackContentLoader.JSON
     {
         public readonly string Extension = ".json";
 
-        protected abstract JsonConverter[] CustomConverters { get; }
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 
         protected AbstractJSONContentListRepository(string filePath, bool loadImmediately = false) : base(filePath)
@@ -46,7 +45,7 @@ namespace Plugins.UnityMonstackContentLoader.JSON
             try
             {
                 var dataAsJson = ReadJson();
-                var deserializedList = JsonConvert.DeserializeObject<JSONDeserializedList<TEntity>>(dataAsJson, CustomConverters);
+                var deserializedList = JsonConvert.DeserializeObject<JSONDeserializedList<TEntity>>(dataAsJson, JsonSerializerSettings);
                 deserializedList.entries.ForEach(entity =>
                 {
                     entries[GetEntityID(entity)] = entity;
