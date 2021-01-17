@@ -2,6 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 using Plugins.UnityMonstackCore.Loggers;
+using Plugins.UnityMonstackCore.Providers;
 using UnityEngine;
 
 namespace Plugins.UnityMonstackContentLoader.JSON
@@ -30,7 +31,7 @@ namespace Plugins.UnityMonstackContentLoader.JSON
         {
             try
             {
-                var path = Application.dataPath + "/Resources/" + FilePath;
+                var path = ResourceProvider.GetApplicationDirectory() + "/Assets/Resources/" + FilePath;
                 var directory = Directory.EnumerateFiles(path, "*.json", SearchOption.AllDirectories);
                 foreach (var file in directory)
                 {
