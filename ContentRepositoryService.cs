@@ -16,13 +16,6 @@ namespace Plugins.UnityMonstackContentLoader
     {
         private readonly Dictionary<Type, IContentRepository> m_contentRepositories =
             new Dictionary<Type, IContentRepository>();
-        
-        public ContentRepositoryService()
-        {
-            var listOfRepositories = DependencyProvider.ResolveList<IContentRepository>();
-            foreach (var loader in listOfRepositories)
-                m_contentRepositories[loader.GetType()] = loader;
-        }
 
         public static ContentRepositoryService Instance => DependencyProvider.Resolve<ContentRepositoryService>();
 
@@ -42,6 +35,11 @@ namespace Plugins.UnityMonstackContentLoader
 
         public void Reload()
         {
+            m_contentRepositories.Clear();
+            var listOfRepositories = DependencyProvider.ResolveList<IContentRepository>();
+            foreach (var loader in listOfRepositories)
+                m_contentRepositories[loader.GetType()] = loader;
+
             var loaders = new List<IContentRepository>();
             m_contentRepositories.ForEachValue(loader => loaders.Add(loader));
             loaders.Sort((x, y) => x.GetLoadingOrder().CompareTo(y.GetLoadingOrder()));
