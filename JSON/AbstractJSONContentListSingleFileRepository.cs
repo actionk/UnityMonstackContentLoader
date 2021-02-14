@@ -36,16 +36,23 @@ namespace Plugins.UnityMonstackContentLoader.JSON
                 foreach (var file in directory)
                 {
                     var filePath = file.Replace(path + "\\", "").Replace(".json", "");
-                    var json = Resources.Load<TextAsset>(FilePath + "/" + filePath).text;
-                    var entity = JsonConvert.DeserializeObject<TEntity>(json, JsonSerializerSettings);
+                    try
+                    {
+                        var json = Resources.Load<TextAsset>(FilePath + "/" + filePath).text;
+                        var entity = JsonConvert.DeserializeObject<TEntity>(json, JsonSerializerSettings);
 
-                    entries[GetEntityID(entity)] = entity;
-                    if (entity is IContentEntity contentEntity) contentEntity.Initialize();
+                        entries[GetEntityID(entity)] = entity;
+                        if (entity is IContentEntity contentEntity) contentEntity.Initialize();
+                    }
+                    catch (Exception e)
+                    {
+                        UnityLogger.Error($"Failed to read/deserialize JSON from [{filePath}] for repository [{GetType()}] because", e);
+                    }
                 }
             }
             catch (Exception e)
             {
-                UnityLogger.Error($"Failed to load JSON from {FilePath} because", e);
+                UnityLogger.Error($"Failed to initialize repository [{GetType()}] from [{FilePath}] because", e);
             }
         }
     }
