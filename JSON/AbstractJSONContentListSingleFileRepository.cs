@@ -1,19 +1,26 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
+using Plugins.Shared.UnityMonstackCore.Utils;
 using Plugins.UnityMonstackCore.Loggers;
-using Plugins.UnityMonstackCore.Providers;
 using UnityEngine;
+#if !UNITY_EDITOR
+using Plugins.UnityMonstackCore.Utils;
+#endif
 
 namespace Plugins.UnityMonstackContentLoader.JSON
 {
-    public abstract class AbstractJSONContentListSingleFileRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>
+    public abstract class AbstractJSONContentListSingleFileRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>, IJSONContentListSingleFileRepository
         where TEntity : class
     {
+        public string Path { get; }
+
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 
         protected AbstractJSONContentListSingleFileRepository(string filePath, bool loadImmediately = false) : base(filePath)
         {
+            Path = FileUtils.GetApplicationDirectory() + "/Assets/Resources/" + FilePath;
             JsonSerializerSettings = new JsonSerializerSettings();
             JsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             JsonSerializerSettings.Formatting = Formatting.Indented;
@@ -31,11 +38,15 @@ namespace Plugins.UnityMonstackContentLoader.JSON
         {
             try
             {
-                var path = ResourceProvider.GetApplicationDirectory() + "/Assets/Resources/" + FilePath;
-                var directory = Directory.EnumerateFiles(path, "*.json", SearchOption.AllDirectories);
-                foreach (var file in directory)
+#if UNITY_EDITOR
+                var filesInPath = Directory.EnumerateFiles(Path, "*.json", SearchOption.AllDirectories)
+                    .Select(x => x.Replace(Path + "\\", "").Replace(".json", ""));
+#else
+                var filesInPath = LocalStorageUtils.LoadSerializedObjectFromFile<ContentFileIndex>(Path + "/files.index").files;
+#endif
+                foreach (var file in filesInPath)
                 {
-                    var filePath = file.Replace(path + "\\", "").Replace(".json", "");
+                    var filePath = file.Replace(Path + "\\", "").Replace(".json", "");
                     try
                     {
                         var json = Resources.Load<TextAsset>(FilePath + "/" + filePath).text;

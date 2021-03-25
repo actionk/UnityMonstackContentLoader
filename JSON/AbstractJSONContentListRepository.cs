@@ -37,7 +37,7 @@ namespace Plugins.UnityMonstackContentLoader.JSON
                 entries = entries.Values.ToList()
             }, JsonSerializerSettings);
 
-            LocalStorageUtils.SaveBytesToFile(FileSourceType.Resources, FilePath + Extension, new UTF8Encoding().GetBytes(dataAsJson));
+            // LocalStorageUtils.SaveBytesToFile(FileSourceType.Resources, FilePath + Extension, new UTF8Encoding().GetBytes(dataAsJson));
         }
 
         public override void Reload()

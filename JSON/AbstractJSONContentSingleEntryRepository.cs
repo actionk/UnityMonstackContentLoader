@@ -12,8 +12,11 @@ namespace Plugins.UnityMonstackContentLoader.JSON
     {
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 
+        public string Path { get; }
+        
         protected AbstractJSONContentSingleEntryRepository(string filePath) : base(filePath)
         {
+            Path = filePath;
             JsonSerializerSettings = new JsonSerializerSettings();
             JsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             JsonSerializerSettings.Formatting = Formatting.Indented;
