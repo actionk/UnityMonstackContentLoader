@@ -5,7 +5,9 @@ using Newtonsoft.Json;
 using Plugins.Shared.UnityMonstackCore.Utils;
 using Plugins.UnityMonstackCore.Loggers;
 using UnityEngine;
+
 #if !UNITY_EDITOR
+using Plugins.UnityMonstackCore.Providers;
 using Plugins.UnityMonstackCore.Utils;
 #endif
 
@@ -42,7 +44,8 @@ namespace Plugins.UnityMonstackContentLoader.JSON
                 var filesInPath = Directory.EnumerateFiles(Path, "*.json", SearchOption.AllDirectories)
                     .Select(x => x.Replace(Path + "\\", "").Replace(".json", ""));
 #else
-                var filesInPath = LocalStorageUtils.LoadSerializedObjectFromFile<ContentFileIndex>(Path + "/files.index").files;
+                var jsonData = ResourceProvider.GetJSON(FilePath + "/files");
+                var filesInPath = LocalStorageUtils.LoadJSONSerializedObjectFromData<ContentFileIndex>(jsonData).files;
 #endif
                 foreach (var file in filesInPath)
                 {
