@@ -2,9 +2,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
+using Plugins.Shared.UnityMonstackContentLoader;
 using Plugins.UnityMonstackCore.DependencyInjections;
 using Plugins.UnityMonstackCore.Extensions.Collections;
+using Sirenix.Utilities;
 using UnityEngine;
 
 #endregion
@@ -42,8 +45,10 @@ namespace Plugins.UnityMonstackContentLoader
 
             var loaders = new List<IContentRepository>();
             m_contentRepositories.ForEachValue(loader => loaders.Add(loader));
-            loaders.Sort((x, y) => x.GetLoadingOrder().CompareTo(y.GetLoadingOrder()));
-            loaders.ForEach(loader => ReloadRepository(loader));
+
+            loaders
+                .OrderByDescending(x => x.Priority)
+                .ForEach(ReloadRepository);
         }
 
         private static void ReloadRepository(IContentRepository loader)

@@ -1,9 +1,9 @@
-﻿namespace Plugins.UnityMonstackContentLoader
+﻿namespace Plugins.Shared.UnityMonstackContentLoader
 {
     public interface IContentRepository
     {
         int Count { get; }
-        int GetLoadingOrder();
+        int Priority { get; }
         void Reload();
     }
 }

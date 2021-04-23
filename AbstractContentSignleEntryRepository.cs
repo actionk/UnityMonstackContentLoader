@@ -1,4 +1,5 @@
-﻿using Plugins.UnityMonstackCore.Utils;
+﻿using Plugins.Shared.UnityMonstackContentLoader;
+using Plugins.UnityMonstackCore.Utils;
 
 namespace Plugins.UnityMonstackContentLoader
 {
@@ -14,11 +15,7 @@ namespace Plugins.UnityMonstackContentLoader
         public T Entity { get; protected set; }
 
         public int Count => 1;
-
-        public int GetLoadingOrder()
-        {
-            return 0;
-        }
+        public virtual int Priority => 0;
 
         public abstract void Reload();
     }

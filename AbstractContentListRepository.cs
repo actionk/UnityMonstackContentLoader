@@ -21,11 +21,8 @@ namespace Plugins.UnityMonstackContentLoader
 
         public virtual FileSourceType FileSource => FileSourceType.ApplicationPersistentData;
         public int Count => entries.Count;
-
-        public virtual int GetLoadingOrder()
-        {
-            return 0;
-        }
+        
+        public virtual int Priority => 0;
 
         public abstract void Reload();
 
