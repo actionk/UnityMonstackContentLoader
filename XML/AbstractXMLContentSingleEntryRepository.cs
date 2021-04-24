@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace Plugins.UnityMonstackContentLoader.XML
 {
-    public class AbstractXMLContentSingleEntryRepository<T> : AbstractContentSignleEntryRepository<T>
+    public class AbstractXMLContentSingleEntryRepository<T> : AbstractContentSingleEntryRepository<T>
     {
         protected AbstractXMLContentSingleEntryRepository(string filePath) : base(filePath)
         {

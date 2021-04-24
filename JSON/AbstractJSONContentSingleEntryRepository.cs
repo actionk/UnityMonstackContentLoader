@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Plugins.UnityMonstackContentLoader.JSON
 {
-    public abstract class AbstractJSONContentSingleEntryRepository<T> : AbstractContentSignleEntryRepository<T>
+    public abstract class AbstractJSONContentSingleEntryRepository<T> : AbstractContentSingleEntryRepository<T>
     {
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 
