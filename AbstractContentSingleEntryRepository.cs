@@ -3,9 +3,9 @@ using Plugins.UnityMonstackCore.Utils;
 
 namespace Plugins.UnityMonstackContentLoader
 {
-    public abstract class AbstractContentSignleEntryRepository<T> : IContentRepository
+    public abstract class AbstractContentSingleEntryRepository<T> : IContentRepository
     {
-        protected AbstractContentSignleEntryRepository(string filePath)
+        protected AbstractContentSingleEntryRepository(string filePath)
         {
             FilePath = filePath;
         }
