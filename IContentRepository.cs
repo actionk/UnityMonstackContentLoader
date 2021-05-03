@@ -1,4 +1,7 @@
-﻿namespace Plugins.Shared.UnityMonstackContentLoader
+﻿using Plugins.Shared.UnityMonstackContentLoader.JSON.Converter;
+using UnityEngine;
+
+namespace Plugins.Shared.UnityMonstackContentLoader
 {
     public interface IContentRepository
     {

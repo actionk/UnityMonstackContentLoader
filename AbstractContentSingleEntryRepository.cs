@@ -18,5 +18,10 @@ namespace Plugins.UnityMonstackContentLoader
         public virtual int Priority => 0;
 
         public abstract void Reload();
+        
+        public object GetObjectByKey(object key)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

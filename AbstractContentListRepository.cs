@@ -6,8 +6,8 @@ using Plugins.UnityMonstackCore.Utils;
 
 namespace Plugins.UnityMonstackContentLoader
 {
-    public abstract class AbstractContentListRepository<TKey, TEntity> : IContentListRepository<TKey, TEntity>,
-        IEnumerable<TEntity> where TEntity : class
+    public abstract class AbstractContentListRepository<TKey, TEntity> : IContentListRepository<TKey, TEntity>, IEnumerable<TEntity> 
+        where TEntity : class
     {
         protected bool hasPendingChanges;
         protected readonly Dictionary<TKey, TEntity> entries = new Dictionary<TKey, TEntity>();
@@ -25,7 +25,12 @@ namespace Plugins.UnityMonstackContentLoader
         public virtual int Priority => 0;
 
         public abstract void Reload();
-
+        
+        public object Resolve(object key)
+        {
+            return GetByKey((TKey)key);
+        }
+        
         public virtual bool ContainsKey(TKey key)
         {
             return entries.ContainsKey(key);
