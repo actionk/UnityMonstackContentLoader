@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using Plugins.UnityMonstackCore.Loggers;
 using Plugins.UnityMonstackCore.Utils;
 
@@ -25,7 +26,7 @@ namespace Plugins.UnityMonstackContentLoader
         public virtual int Priority => 0;
 
         public abstract void Reload();
-        
+
         public object Resolve(object key)
         {
             return GetByKey((TKey)key);
