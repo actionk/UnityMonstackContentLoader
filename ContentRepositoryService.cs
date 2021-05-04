@@ -2,13 +2,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using Newtonsoft.Json;
 using Plugins.Shared.UnityMonstackContentLoader;
 using Plugins.UnityMonstackCore.DependencyInjections;
 using Plugins.UnityMonstackCore.Extensions.Collections;
 using Sirenix.Utilities;
-using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 #endregion
 
@@ -53,8 +53,11 @@ namespace Plugins.UnityMonstackContentLoader
 
         private static void ReloadRepository(IContentRepository loader)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
             loader.Reload();
-            Debug.Log("Repository [" + loader + "] is reloaded with [" + loader.Count + "] entries");
+            stopwatch.Stop();
+            Debug.Log("Repository [" + loader + "] is reloaded with [" + loader.Count + $"] entries in [{stopwatch.ElapsedMilliseconds} ms]");
         }
     }
 }
