@@ -7,8 +7,8 @@ using System.Linq;
 using Plugins.Shared.UnityMonstackContentLoader;
 using Plugins.UnityMonstackCore.DependencyInjections;
 using Plugins.UnityMonstackCore.Extensions.Collections;
+using Plugins.UnityMonstackCore.Loggers;
 using Sirenix.Utilities;
-using Debug = UnityEngine.Debug;
 
 #endregion
 
@@ -57,7 +57,7 @@ namespace Plugins.UnityMonstackContentLoader
             stopwatch.Start();
             loader.Reload();
             stopwatch.Stop();
-            Debug.Log("Repository [" + loader + "] is reloaded with [" + loader.Count + $"] entries in [{stopwatch.ElapsedMilliseconds} ms]");
+            UnityLogger.Info("Repository [" + loader + "] is reloaded with [" + loader.Count + $"] entries in [{stopwatch.ElapsedMilliseconds} ms]");
         }
     }
 }
