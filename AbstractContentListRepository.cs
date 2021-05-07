@@ -7,7 +7,7 @@ using Plugins.UnityMonstackCore.Utils;
 
 namespace Plugins.UnityMonstackContentLoader
 {
-    public abstract class AbstractContentListRepository<TKey, TEntity> : IContentListRepository<TKey, TEntity>, IEnumerable<TEntity> 
+    public abstract class AbstractContentListRepository<TKey, TEntity> : IContentListRepository<TKey, TEntity>, IEnumerable<TEntity>
         where TEntity : class
     {
         protected bool hasPendingChanges;
@@ -22,16 +22,16 @@ namespace Plugins.UnityMonstackContentLoader
 
         public virtual FileSourceType FileSource => FileSourceType.ApplicationPersistentData;
         public int Count => entries.Count;
-        
+
         public virtual int Priority => 0;
 
         public abstract void Reload();
 
         public object Resolve(object key)
         {
-            return GetByKey((TKey)key);
+            return GetByKey((TKey) key);
         }
-        
+
         public virtual bool ContainsKey(TKey key)
         {
             return entries.ContainsKey(key);
@@ -41,7 +41,7 @@ namespace Plugins.UnityMonstackContentLoader
         {
             if (!entries.ContainsKey(key))
             {
-                UnityLogger.Warning("Entity with key [{}] is not found in [{}]", key, this);
+                UnityLogger.Error("Entity with key [{}] is not found in [{}]", key, this);
                 return null;
             }
 
