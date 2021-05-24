@@ -10,7 +10,7 @@ namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Identifiers
     {
         private readonly Dictionary<string, Type> m_types;
 
-        public abstract string TypeField { get; }
+        public virtual string TypeField => "type";
 
         protected virtual void OnAfterDeserialize(T target)
         {

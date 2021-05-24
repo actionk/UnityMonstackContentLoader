@@ -26,9 +26,15 @@ namespace Plugins.UnityMonstackContentLoader.JSON
             JsonSerializerSettings = new JsonSerializerSettings();
             JsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             JsonSerializerSettings.Formatting = Formatting.Indented;
+            OnPrepareJsonSerializer(JsonSerializerSettings);
 
             if (loadImmediately)
                 Reload();
+        }
+
+        protected virtual void OnPrepareJsonSerializer(JsonSerializerSettings jsonSerializerSettings)
+        {
+            
         }
 
         public override void Save()
