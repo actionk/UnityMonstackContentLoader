@@ -1,4 +1,4 @@
-﻿namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter
+﻿namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Resolvers
 {
     public interface IObjectResolver
     {

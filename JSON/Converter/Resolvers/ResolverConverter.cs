@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plugins.UnityMonstackCore.DependencyInjections;
 
-namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter
+namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Resolvers
 {
     public class ResolverConverter : JsonConverter
     {

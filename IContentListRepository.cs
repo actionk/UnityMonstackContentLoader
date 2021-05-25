@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Plugins.Shared.UnityMonstackContentLoader;
 using Plugins.Shared.UnityMonstackContentLoader.JSON.Converter;
+using Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Resolvers;
 using Plugins.UnityMonstackCore.Utils;
 
 namespace Plugins.UnityMonstackContentLoader
