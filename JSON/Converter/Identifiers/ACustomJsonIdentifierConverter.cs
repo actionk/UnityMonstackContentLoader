@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using Plugins.UnityMonstackContentLoader;
 
 namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Identifiers
 {
@@ -29,7 +30,7 @@ namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Identifiers
         private T Create(Type objectType, JObject jObject)
         {
             var type = (string) jObject.Property(TypeField);
-            if (m_types.ContainsKey(type))
+            if (type != null && m_types.ContainsKey(type))
             {
                 var entry = (T) Activator.CreateInstance(m_types[type]);
                 return entry;
@@ -43,6 +44,10 @@ namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Identifiers
             JObject jObject = JObject.Load(reader);
             var target = Create(objectType, jObject);
             serializer.Populate(jObject.CreateReader(), target);
+            
+            if (target is IContentEntity contentEntity)
+                contentEntity.Initialize();
+            
             OnAfterDeserialize(target);
             return target;
         }
