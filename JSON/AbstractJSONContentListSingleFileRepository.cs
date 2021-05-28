@@ -3,7 +3,10 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Plugins.Shared.UnityMonstackCore.Utils;
+using Plugins.UnityMonstackContentLoader.JSON.Converter;
+using Plugins.UnityMonstackCore.DependencyInjections;
 using Plugins.UnityMonstackCore.Loggers;
+using Sirenix.Utilities;
 using UnityEngine;
 
 #if !UNITY_EDITOR
@@ -28,13 +31,14 @@ namespace Plugins.UnityMonstackContentLoader.JSON
             JsonSerializerSettings.Formatting = Formatting.Indented;
             OnPrepareJsonSerializer(JsonSerializerSettings);
 
+            if (IsCustomConvertersEnabled)
+            {
+                var customConverters = DependencyProvider.Resolve<CustomConverterManager>().CustomConverters;
+                JsonSerializerSettings.Converters.AddRange(customConverters);
+            }
+
             if (loadImmediately)
                 Reload();
-        }
-
-        protected virtual void OnPrepareJsonSerializer(JsonSerializerSettings jsonSerializerSettings)
-        {
-            
         }
 
         public override void Save()

@@ -13,6 +13,8 @@ namespace Plugins.UnityMonstackContentLoader
         protected bool hasPendingChanges;
         protected readonly Dictionary<TKey, TEntity> entries = new Dictionary<TKey, TEntity>();
 
+        public virtual bool IsCustomConvertersEnabled { get; } = true;
+        
         protected AbstractContentListRepository(string filePath)
         {
             FilePath = filePath;
@@ -26,6 +28,10 @@ namespace Plugins.UnityMonstackContentLoader
         public virtual int Priority => 0;
 
         public abstract void Reload();
+        
+        protected virtual void OnPrepareJsonSerializer(JsonSerializerSettings jsonSerializerSettings)
+        {
+        }
 
         public object Resolve(object key)
         {

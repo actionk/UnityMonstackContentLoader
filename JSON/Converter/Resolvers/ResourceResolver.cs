@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Plugins.UnityMonstackContentLoader.JSON.Converter;
 using Plugins.UnityMonstackCore.DependencyInjections;
 using Plugins.UnityMonstackCore.Loggers;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Resolvers
     }
 
     [Inject]
-    public class ResourceResolverConverter : JsonConverter
+    public class ResourceResolverConverter : JsonConverter, ICustomJsonConverter
     {
         public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {

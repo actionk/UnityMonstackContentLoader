@@ -3,8 +3,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
+using Plugins.UnityMonstackContentLoader.JSON.Converter;
+using Plugins.UnityMonstackCore.DependencyInjections;
 using Plugins.UnityMonstackCore.Loggers;
 using Plugins.UnityMonstackCore.Utils;
+using Sirenix.Utilities;
 using UnityEngine;
 
 namespace Plugins.UnityMonstackContentLoader.JSON
@@ -22,6 +25,14 @@ namespace Plugins.UnityMonstackContentLoader.JSON
             JsonSerializerSettings = new JsonSerializerSettings();
             JsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             JsonSerializerSettings.Formatting = Formatting.Indented;
+
+            OnPrepareJsonSerializer(JsonSerializerSettings);
+
+            if (IsCustomConvertersEnabled)
+            {
+                var customConverters = DependencyProvider.Resolve<CustomConverterManager>().CustomConverters;
+                JsonSerializerSettings.Converters.AddRange(customConverters);
+            }
 
             if (loadImmediately)
                 Reload();
