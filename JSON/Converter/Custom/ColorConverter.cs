@@ -1,11 +1,12 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Plugins.UnityMonstackContentLoader.JSON.Converter;
 using Plugins.UnityMonstackCore.DependencyInjections;
 using Plugins.UnityMonstackCore.Loggers;
 using UnityEngine;
 
-namespace Plugins.UnityMonstackContentLoader.JSON.Converter.Custom
+namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Custom
 {
     [Inject]
     public class ColorConverter : JsonConverter<Color>, ICustomJsonConverter
