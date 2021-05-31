@@ -16,14 +16,14 @@ using Plugins.UnityMonstackCore.Utils;
 
 namespace Plugins.UnityMonstackContentLoader.JSON
 {
-    public abstract class AbstractJSONContentListSingleFileRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>, IJSONContentListSingleFileRepository
+    public abstract class AJSONContentListSingleFileRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>, IJSONContentListSingleFileRepository
         where TEntity : class
     {
         public string Path { get; }
 
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 
-        protected AbstractJSONContentListSingleFileRepository(string filePath, bool loadImmediately = false) : base(filePath)
+        protected AJSONContentListSingleFileRepository(string filePath, bool loadImmediately = false) : base(filePath)
         {
             Path = FileUtils.GetApplicationDirectory() + "/Assets/Resources/" + FilePath;
             JsonSerializerSettings = new JsonSerializerSettings();

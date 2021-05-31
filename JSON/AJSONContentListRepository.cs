@@ -13,14 +13,14 @@ using UnityEngine;
 namespace Plugins.UnityMonstackContentLoader.JSON
 {
     public abstract class
-        AbstractJSONContentListRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>
+        AJSONContentListRepository<TKey, TEntity> : AbstractContentListRepository<TKey, TEntity>
         where TEntity : class
     {
         public readonly string Extension = ".json";
 
         protected JsonSerializerSettings JsonSerializerSettings { get; }
 
-        protected AbstractJSONContentListRepository(string filePath, bool loadImmediately = false) : base(filePath)
+        protected AJSONContentListRepository(string filePath, bool loadImmediately = false) : base(filePath)
         {
             JsonSerializerSettings = new JsonSerializerSettings();
             JsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
