@@ -1,11 +1,13 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Plugins.UnityMonstackContentLoader.JSON.Converter;
 using Plugins.UnityMonstackCore.DependencyInjections;
 
 namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Resolvers
 {
-    public class ResolverConverter : JsonConverter
+    [Inject]
+    public class ContentResolverConverter : JsonConverter, ICustomJsonConverter
     {
         public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
@@ -19,12 +21,12 @@ namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Resolvers
             var repositoryType = objectType.GenericTypeArguments[1];
             var value = ((IObjectResolver) DependencyProvider.ResolveByType(repositoryType)).Resolve(key);
 
-            return Activator.CreateInstance(typeof(Resolver<,>).MakeGenericType(entityType, repositoryType), value);
+            return Activator.CreateInstance(typeof(ContentResolver<,>).MakeGenericType(entityType, repositoryType), value);
         }
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Resolver<,>);
+            return objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(ContentResolver<,>);
         }
     }
 }

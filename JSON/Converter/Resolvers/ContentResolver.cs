@@ -4,9 +4,9 @@
     {
         
     }
-    public class Resolver<TEntity,TRepository> : IResolver
+    public class ContentResolver<TEntity,TRepository> : IResolver
     {
-        public Resolver(TEntity data)
+        public ContentResolver(TEntity data)
         {
             Data = data;
         }
