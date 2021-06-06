@@ -26,9 +26,11 @@ namespace Plugins.UnityMonstackContentLoader.JSON
         protected AJSONContentListDifferentFilesRepository(string filePath, bool loadImmediately = false) : base(filePath)
         {
             Path = FileUtils.GetApplicationDirectory() + "/Assets/Resources/" + FilePath;
-            JsonSerializerSettings = new JsonSerializerSettings();
-            JsonSerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-            JsonSerializerSettings.Formatting = Formatting.Indented;
+            JsonSerializerSettings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
             OnPrepareJsonSerializer(JsonSerializerSettings);
 
             if (IsCustomConvertersEnabled)
@@ -48,6 +50,7 @@ namespace Plugins.UnityMonstackContentLoader.JSON
 
         public override void Reload()
         {
+            UnityLogger.Log($"test {GetType()}");
             try
             {
 #if UNITY_EDITOR
@@ -66,7 +69,10 @@ namespace Plugins.UnityMonstackContentLoader.JSON
                         var entity = JsonConvert.DeserializeObject<TEntity>(json, JsonSerializerSettings);
 
                         entries[GetEntityID(entity)] = entity;
-                        if (entity is IContentEntity contentEntity) contentEntity.Initialize();
+                        if (entity is IContentEntity contentEntity)
+                        {
+                            contentEntity.Initialize();
+                        }
                     }
                     catch (Exception e)
                     {
