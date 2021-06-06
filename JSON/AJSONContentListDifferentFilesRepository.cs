@@ -50,7 +50,6 @@ namespace Plugins.UnityMonstackContentLoader.JSON
 
         public override void Reload()
         {
-            UnityLogger.Log($"test {GetType()}");
             try
             {
 #if UNITY_EDITOR
