@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Plugins.Shared.UnityMonstackCore.Attributes;
 using Plugins.UnityMonstackCore.Loggers;
 using Sirenix.Utilities;
 

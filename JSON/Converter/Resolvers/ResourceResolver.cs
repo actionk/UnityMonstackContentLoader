@@ -13,15 +13,18 @@ namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Resolvers
     {
         public readonly string pathToResource;
 
+        private bool m_isResourceLocated;
         private T m_resource;
 
         public T Resource
         {
             get
             {
-                if (m_resource == null)
-                    m_resource = Resources.Load<T>(pathToResource);
+                if (m_isResourceLocated)
+                    return m_resource;
 
+                m_resource = Resources.Load<T>(pathToResource);
+                m_isResourceLocated = true;
                 return m_resource;
             }
         }
@@ -35,12 +38,12 @@ namespace Plugins.Shared.UnityMonstackContentLoader.JSON.Converter.Resolvers
     [Inject]
     public class ResourceResolverConverter : JsonConverter, ICustomJsonConverter
     {
-        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var path = (string) JToken.Load(reader);
             var resourceType = objectType.GenericTypeArguments[0];
