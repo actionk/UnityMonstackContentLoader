@@ -1,0 +1,16 @@
+{
+    "name": "Plugins.UnityMonstackContentLoader",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f7f57a04846cfb84caac6ebb133fcb61"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
